@@ -1,3 +1,3 @@
 == API仕様書について
-API仕様書が、doc/rest-api/index.html に格納されています。この仕様書は、 https://spring.io/projects/spring-restdocs[Spring REST Docs^]を使用して、テストプログラムから自動的に仕様書の断片を生成しています。生成された断片を、doc/rest-api ディレクトリ配下のadocファイルが取り込んでいます。
+API仕様書が、doc/rest-api/index.html に格納されています。 https://htmlpreview.github.io/?https://github.com/genba-oriented/gea-backend-api/blob/main/doc/rest-api/index.html[こちら]で見栄え良く表示できます。のこの仕様書は、 https://spring.io/projects/spring-restdocs[Spring REST Docs^]を使用して、テストプログラムから自動的に仕様書の断片を生成しています。生成された断片を、doc/rest-api ディレクトリ配下のadocファイルが取り込んでいます。※adocファイルからhtmlファイルへの変換はIntelliJ IDEAで行っています。
 
