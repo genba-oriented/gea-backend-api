@@ -1,0 +1,20 @@
+== 発送ドメイン
+
+=== 【要認証】商品の発送通知をする
+.リクエスト
+include::{snippets}/shipping/shipped/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/shipping/shipped/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/shipping/shipped/http-response.adoc[]
+
+==== エラー系
+
+.レスポンス
+include::{snippets}/shipping/shipped_alreadyShipped/http-response.adoc[]
+
+.レスポンスフィールド
+include::{snippets}/shipping/shipped_alreadyShipped/response-fields.adoc[]
+

@@ -1,0 +1,8 @@
+== テストについて
+
+=== テスト用のデータベース
+https://testcontainers.com[Testcontainers^]を使用してデータベースを用意しています。
+
+
+=== アーキテクチャのテスト
+ドメイン間の依存の方向や、役割間の依存の方向に違反していないかを、 https://www.archunit.org[ArchUnit^]を使ってチェックしています。

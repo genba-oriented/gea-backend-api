@@ -1,0 +1,8 @@
+== ユーザドメイン
+=== 【要認証】自分の情報を取得する
+.リクエスト
+include::{snippets}/user/me/http-request.adoc[]
+
+.レスポンス
+include::{snippets}/user/me/http-response.adoc[]
+

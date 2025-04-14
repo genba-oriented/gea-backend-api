@@ -1,0 +1,37 @@
+== 実行方法
+
+=== Postgresの起動とテーブルの用意
+----
+docker run --name postgres-fleamarket -p 5432:5432 -e POSTGRES_USER=fleamarket -e POSTGRES_PASSWORD=fleamarket -e POSTGRES_DB=fleamarket -d postgres
+
+docker exec -it postgres-fleamarket psql -U fleamarket
+
+# psqlの画面に、src/test/resouces/schema.sql の中身を貼り付けて実行
+
+----
+
+=== アプリケーションのビルド
+
+----
+# Java21以上が必要です
+./mvnw package
+----
+
+
+=== 環境変数の設定
+Javaを実行する前に、以下の環境変数を設定します。
+
+|===
+|環境変数名|説明|サンプル値
+
+|SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_AUDIENCES|JWTの「aud」の値。JWTを検証する際にチェックする。IdPとしてGoogleを使用する場合は、クライアントIDの値が該当します|aud01
+|SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI|JWTを発行するIdP(Issuer)のURL|\https://accounts.google.com
+|===
+
+
+=== Javaの実行
+----
+java -jar target/fleamarket-api-0.0.1-SNAPSHOT.jar
+----
+
+

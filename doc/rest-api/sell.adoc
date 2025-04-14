@@ -1,0 +1,103 @@
+== 出品ドメイン
+=== 【要認証】出品する
+.リクエスト
+include::{snippets}/sell/register/http-request.adoc[]
+
+.リクエストフィールド
+include::{snippets}/sell/register/request-fields.adoc[]
+
+.レスポンス
+include::{snippets}/sell/register/http-response.adoc[]
+
+.レスポンスヘッダ
+include::{snippets}/sell/register/response-headers.adoc[]
+
+=== 【要認証】出品した商品の一覧を取得する
+.リクエスト
+include::{snippets}/sell/getAll/http-request.adoc[]
+
+
+.レスポンス
+include::{snippets}/sell/getAll/http-response.adoc[]
+
+=== 【要認証】出品した商品を取得する
+.リクエスト
+include::{snippets}/sell/getSell/http-request.adoc[]
+
+
+.レスポンス
+include::{snippets}/sell/getSell/http-response.adoc[]
+
+=== 【要認証】商品の画像を取得する
+.リクエスト
+include::{snippets}/sell/getProductImage/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/getProductImage/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/sell/getProductImage/http-response.adoc[]
+
+=== 【要認証】出品した商品を更新する
+.リクエスト
+include::{snippets}/sell/updateSell/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/updateSell/path-parameters.adoc[]
+
+.リクエストフィールド
+include::{snippets}/sell/updateSell/request-fields.adoc[]
+
+.レスポンス
+include::{snippets}/sell/getProductImage/http-response.adoc[]
+
+=== 【要認証】商品画像を登録する
+.リクエスト
+include::{snippets}/sell/registerProductImage/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/registerProductImage/path-parameters.adoc[]
+
+.マルチパート
+include::{snippets}/sell/registerProductImage/request-parts.adoc[]
+
+.レスポンス
+include::{snippets}/sell/registerProductImage/http-response.adoc[]
+
+.レスポンスヘッダ
+include::{snippets}/sell/registerProductImage/response-headers.adoc[]
+
+=== 【要認証】商品画像を更新する
+.リクエスト
+include::{snippets}/sell/updateProductImage/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/updateProductImage/path-parameters.adoc[]
+
+.マルチパート
+include::{snippets}/sell/updateProductImage/request-parts.adoc[]
+
+.レスポンス
+include::{snippets}/sell/updateProductImage/http-response.adoc[]
+
+=== 【要認証】商品画像を削除する
+.リクエスト
+include::{snippets}/sell/deleteProductImage/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/deleteProductImage/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/sell/deleteProductImage/http-response.adoc[]
+
+=== 【要認証】商品画像を並び替える
+.リクエスト
+include::{snippets}/sell/reorderProductImages/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/sell/reorderProductImages/path-parameters.adoc[]
+.リクエストフィールド
+include::{snippets}/sell/reorderProductImages/request-fields.adoc[]
+
+.レスポンス
+include::{snippets}/sell/reorderProductImages/http-response.adoc[]

@@ -1,0 +1,8 @@
+== 技術スタック
+
+|===
+|ライブラリ名|説明
+
+|https://spring.io/projects/spring-boot[Spring Boot^]|アプリケーション全体のフレームワーク。Spring Framework, Spring MVC, Spring Securityを含む
+|https://github.com/domaframework/doma[Doma^]|データアクセスのためのライブラリ
+|===

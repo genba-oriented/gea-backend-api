@@ -1,0 +1,32 @@
+== 評価ドメイン
+=== 【要認証】評価する
+.リクエスト
+include::{snippets}/review/review/http-request.adoc[]
+
+.リクエストフィールド
+include::{snippets}/review/review/request-fields.adoc[]
+
+.レスポンス
+include::{snippets}/review/review/http-response.adoc[]
+
+.レスポンスヘッダ
+include::{snippets}/review/review/response-headers.adoc[]
+
+==== エラー系
+
+.レスポンス
+include::{snippets}/review/review_alreadyReviewed/http-response.adoc[]
+
+.レスポンスフィールド
+include::{snippets}/review/review_alreadyReviewed/response-fields.adoc[]
+
+
+=== 評価情報付きのユーザ情報を取得する
+.リクエスト
+include::{snippets}/review/getRatedUser/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/review/getRatedUser/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/review/getRatedUser/http-response.adoc[]

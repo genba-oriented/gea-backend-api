@@ -1,0 +1,12 @@
+logging:
+    level:
+        org:
+            springframework:
+                web: debug
+                security: trace
+spring:
+    datasource:
+        password: fleamarket
+        url: jdbc:postgresql://localhost:5432/fleamarket
+        username: fleamarket
+

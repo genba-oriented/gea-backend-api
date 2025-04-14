@@ -1,0 +1,59 @@
+== 購入ドメイン
+=== 【要認証】商品を購入する
+.リクエスト
+include::{snippets}/buy/buy/http-request.adoc[]
+
+.リクエストフィールド
+include::{snippets}/buy/buy/request-fields.adoc[]
+
+.レスポンス
+include::{snippets}/buy/buy/http-response.adoc[]
+
+.レスポンスヘッダ
+include::{snippets}/buy/buy/response-headers.adoc[]
+
+==== エラー系
+
+.レスポンス
+include::{snippets}/buy/buy_alreadyBought/http-response.adoc[]
+
+.レスポンスフィールド
+include::{snippets}/buy/buy_alreadyBought/response-fields.adoc[]
+
+=== 【要認証】購入した商品の一覧を取得する
+.リクエスト
+include::{snippets}/buy/getAll/http-request.adoc[]
+
+.レスポンス
+include::{snippets}/buy/getAll/http-response.adoc[]
+
+=== 【要認証】購入した商品を、出品IDを指定して取得する
+.リクエスト
+include::{snippets}/buy/getAll_filterBySellId/http-request.adoc[]
+
+.リクエストパラメータ
+include::{snippets}/buy/getAll_filterBySellId/query-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/buy/getAll_filterBySellId/http-response.adoc[]
+
+
+=== 【要認証】購入した商品を取得する
+.リクエスト
+include::{snippets}/buy/getById/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/buy/getById/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/buy/getById/http-response.adoc[]
+
+=== 【要認証】(出品者用)購入者の情報を取得する
+.リクエスト
+include::{snippets}/buy/for-seller/getBuyerInfo/http-request.adoc[]
+
+.リクエストパラメータ
+include::{snippets}/buy/for-seller/getBuyerInfo/query-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/buy/for-seller/getBuyerInfo/http-response.adoc[]

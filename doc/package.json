@@ -1,0 +1,14 @@
+{
+    "name": "doc",
+    "private": true,
+    "version": "1.0.0",
+    "dependencies": {},
+    "devDependencies": {
+        "@textlint-ja/textlint-rule-no-synonyms": "^1.3.0",
+        "@ynitto/textlint-plugin-asciidoc": "^0.1.0",
+        "sudachi-synonyms-dictionary": "^14.0.0",
+        "textlint": "^14.6.0",
+        "textlint-rule-preset-ja-technical-writing": "^12.0.2",
+        "textlint-rule-prh": "^6.0.0"
+    }
+}

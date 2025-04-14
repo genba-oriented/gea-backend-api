@@ -1,0 +1,20 @@
+= REST API仕様書
+:sectnums:
+:toc: left
+:toclevels: 2
+
+include::common.adoc[]
+
+include::sell.adoc[]
+
+include::catalog.adoc[]
+
+include::buy.adoc[]
+
+include::shipping.adoc[]
+
+include::review.adoc[]
+
+include::user.adoc[]
+
+

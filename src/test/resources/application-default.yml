@@ -1,0 +1,23 @@
+spring:
+  sql:
+    init:
+      mode: always
+  autoconfigure:
+    # テスト時はSpring Securityをデフォルトで無効にする
+    # Spring Security絡みのテストをするときは、テストクラス側で本プロパティに空を設定する
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration
+  jackson:
+    serialization:
+      indent_output: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:test.key.pub
+          audiences: aud01
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+        security: trace

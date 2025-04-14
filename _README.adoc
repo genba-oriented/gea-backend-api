@@ -1,0 +1,26 @@
+= Good Enough Architecture ~ Backend API
+:sectnums:
+:toc: left
+:toclevels: 2
+:imagesdir: ./doc
+
+include::./doc/about.adoc[]
+
+include::./doc/concept.adoc[]
+
+include::./doc/run.adoc[]
+
+include::./doc/feature.adoc[]
+
+include::./doc/architecture.adoc[]
+
+include::./doc/stack.adoc[]
+
+include::./doc/authentication.adoc[]
+
+include::./doc/testing.adoc[]
+
+include::./doc/api-spec.adoc[]
+
+
+

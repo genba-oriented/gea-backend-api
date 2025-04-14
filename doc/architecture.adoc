@@ -1,0 +1,43 @@
+== アーキテクチャ
+
+=== ソフトウェアアーキテクチャ
+
+image::sw-architecture.drawio.svg[]
+
+|===
+|役割名|説明
+
+|Controller|リクエストを受け付けて、レスポンスを返す
+|Service|業務ロジックを行う
+|Repository|データアクセスを行う
+|Entity|業務的なデータを保持。基本的にテーブルと1対1でクラスを作成する
+|Input|クライアントからの入力データを保持する
+|Dto|都合の良い単位でデータを保持する。主に、クライアントに返すデータとしてEntityが適さない場合に作成する。※Dtoは、Data Transfer Objectの略
+|===
+
+
+
+=== ドメイン間の依存関係
+ドメイン間の依存関係を一方通行にすることで、プログラムの複雑化を防ぎます。
+
+image::domain-dependencies.drawio.svg[]
+
+
+なお、ドメイン間の依存関係の違反をチェックするため、 https://www.archunit.org[ArchUnit^] を使用しています。
+
+
+=== パッケージ構造について
+各ドメインのパッケージの下に、役割ごとのパッケージを配置しています。以下のようなイメージです。
+----
+ドメインA
+├── controller
+├── service
+├── entity
+...
+ドメインB
+├── controller
+├── service
+├── entity
+...
+----
+

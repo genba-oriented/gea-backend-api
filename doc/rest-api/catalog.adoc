@@ -1,0 +1,30 @@
+== カタログドメイン
+=== 商品を検索する
+.リクエスト
+include::{snippets}/catalog/getSells/http-request.adoc[]
+
+.リクエストパラメータ
+include::{snippets}/catalog/getSells/query-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/catalog/getSells/http-response.adoc[]
+
+=== 商品を取得する
+.リクエスト
+include::{snippets}/catalog/getSell/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/catalog/getSell/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/catalog/getSell/http-response.adoc[]
+
+=== 商品画像を取得する
+.リクエスト
+include::{snippets}/catalog/getProductImage/http-request.adoc[]
+
+.パスパラメータ
+include::{snippets}/catalog/getProductImage/path-parameters.adoc[]
+
+.レスポンス
+include::{snippets}/catalog/getProductImage/http-response.adoc[]

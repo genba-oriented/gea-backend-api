@@ -1,0 +1,3 @@
+== API仕様書について
+API仕様書が、doc/rest-api/index.html に格納されています。この仕様書は、 https://spring.io/projects/spring-restdocs[Spring REST Docs^]を使用して、テストプログラムから自動的に仕様書の断片を生成しています。生成された断片を、doc/rest-api ディレクトリ配下のadocファイルが取り込んでいます。
+

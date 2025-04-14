@@ -1,0 +1,13 @@
+doma:
+  dialect: POSTGRES
+  naming: SNAKE_LOWER_CASE
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          audiences: override-me
+
+
