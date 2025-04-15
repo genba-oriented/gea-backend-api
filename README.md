@@ -189,6 +189,6 @@ OIDCのトークン(JWT)をリクエストで受け取って妥当性を検証�
 
 ## API仕様書について
 
-API仕様書が、doc/rest-api/index.html に格納されています。 [こちら](https://htmlpreview.github.io/?https://github.com/genba-oriented/gea-backend-api/blob/main/doc/rest-api/index.html)で見栄え良く表示できます。のこの仕様書は、 [Spring REST Docs](https://spring.io/projects/spring-restdocs)を使用して、テストプログラムから自動的に仕様書の断片を生成しています。生成された断片を、doc/rest-api ディレクトリ配下のadocファイルが取り込んでいます。※adocファイルからhtmlファイルへの変換はIntelliJ IDEAで行っています。
+API仕様書が、doc/rest-api/index.html に格納されています。 [こちら](https://htmlpreview.github.io/?https://github.com/genba-oriented/gea-backend-api/blob/main/doc/rest-api/index.html)で見栄え良く表示できます。この仕様書は、 [Spring REST Docs](https://spring.io/projects/spring-restdocs)を使用して、テストプログラムから自動的に仕様書の断片を生成しています。生成された断片を、doc/rest-api ディレクトリ配下のadocファイルが取り込んでいます。※adocファイルからhtmlファイルへの変換はIntelliJ IDEAで行っています。
 
 [1] プログラムが読み込むテンプレートとしても使えるし、開発者がpsqlのようなツールで実行することもできるSQL
