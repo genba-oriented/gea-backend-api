@@ -5,7 +5,7 @@ import com.example.fleamarket.api.EnableSecurityTest;
 import com.example.fleamarket.api.user.entity.User;
 import com.example.fleamarket.api.user.entity.User_;
 import org.junit.jupiter.api.Test;
-import org.seasar.doma.jdbc.criteria.Entityql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -24,7 +24,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
     AuthenticatedUserAuthenticationConverter converter;
 
     @Autowired
-    Entityql entityql;
+    QueryDsl queryDsl;
 
     static final User_ u = new User_();
 
@@ -42,7 +42,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
         AuthenticatedUserAuthentication token = this.converter.convert(jwt);
         assertThat(token.getPrincipal()).isNull();
 
-        User fromDb = this.entityql.from(u).where(cond -> cond.eq(u.idpUserId, "idp99")).fetchOne();
+        User fromDb = this.queryDsl.from(u).where(cond -> cond.eq(u.idpUserId, "idp99")).fetchOne();
         assertThat(fromDb.getIdpUserId()).isEqualTo("idp99");
 
     }

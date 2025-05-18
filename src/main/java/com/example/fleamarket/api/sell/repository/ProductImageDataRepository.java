@@ -4,29 +4,27 @@ import com.example.fleamarket.api.sell.entity.ProductImageData;
 import com.example.fleamarket.api.sell.entity.ProductImageData_;
 import com.example.fleamarket.api.sell.entity.ProductImage_;
 import lombok.RequiredArgsConstructor;
-import org.seasar.doma.jdbc.criteria.Entityql;
-import org.seasar.doma.jdbc.criteria.NativeSql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
 public class ProductImageDataRepository {
-    private final Entityql entityql;
-    private final NativeSql nativeSql;
+    private final QueryDsl queryDsl;
     private static final ProductImageData_ d = new ProductImageData_();
     private static final ProductImage_ pi = new ProductImage_();
 
 
     public void save(ProductImageData productImageData) {
-        this.entityql.insert(d, productImageData).execute();
+        this.queryDsl.insert(d).single(productImageData).execute();
     }
 
     public void update(ProductImageData productImageData) {
-        this.entityql.update(d, productImageData).execute();
+        this.queryDsl.update(d).single(productImageData).execute();
     }
 
     public ProductImageData getByProductImageId(String productImageId) {
-        return this.entityql.from(d).leftJoin(pi, on -> on.eq(d.productImageId, pi.id))
+        return this.queryDsl.from(d).leftJoin(pi, on -> on.eq(d.productImageId, pi.id))
             .associate(d, pi, ((data, productImage) -> {
                 data.setProductImage(productImage);
             }))
@@ -34,6 +32,6 @@ public class ProductImageDataRepository {
     }
 
     public void deleteByProductImageId(String id) {
-        this.nativeSql.delete(d).where(cond -> cond.eq(d.productImageId, id)).execute();
+        this.queryDsl.delete(d).where(cond -> cond.eq(d.productImageId, id)).execute();
     }
 }

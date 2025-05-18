@@ -6,7 +6,7 @@ import com.example.fleamarket.api.sell.input.SellInput;
 import com.example.fleamarket.api.util.BusinessDateGetter;
 import com.example.fleamarket.api.util.IdGenerator;
 import org.junit.jupiter.api.Test;
-import org.seasar.doma.jdbc.criteria.Entityql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -26,7 +26,7 @@ class SellServiceTest extends AbstractPostgresContainerTest {
     @Autowired
     SellService sellService;
     @Autowired
-    Entityql entityql;
+    QueryDsl queryDsl;
     Sell_ s = new Sell_();
     ProductImageData_ pid = new ProductImageData_();
 
@@ -48,7 +48,7 @@ class SellServiceTest extends AbstractPostgresContainerTest {
 
         Sell sell = this.sellService.register(sellInput, "u01");
 
-        Sell fromDb = this.entityql.from(s).where(cond -> cond.eq(s.id, "s99")).fetchOne();
+        Sell fromDb = this.queryDsl.from(s).where(cond -> cond.eq(s.id, "s99")).fetchOne();
         assertThat(fromDb.getProductName()).isEqualTo("pname99");
         assertThat(fromDb.getSellDateTime()).isEqualTo(dateTime);
 
@@ -59,14 +59,14 @@ class SellServiceTest extends AbstractPostgresContainerTest {
         doReturn("pi99").when(idGenerator).generateId();
         ProductImage productImage = this.sellService.registerProductImage("s01", "u01", "foo".getBytes());
 
-        ProductImageData fromDb = this.entityql.from(pid).where(cond -> cond.eq(pid.productImageId, "pi99")).fetchOne();
+        ProductImageData fromDb = this.queryDsl.from(pid).where(cond -> cond.eq(pid.productImageId, "pi99")).fetchOne();
         assertThat(fromDb.getData()).isEqualTo("foo".getBytes());
     }
     @Test
     void updateProductImage() {
         this.sellService.updateProductImage("pi01", "u01", "foo".getBytes());
 
-        ProductImageData fromDb = this.entityql.from(pid).where(cond -> cond.eq(pid.productImageId, "pi01")).fetchOne();
+        ProductImageData fromDb = this.queryDsl.from(pid).where(cond -> cond.eq(pid.productImageId, "pi01")).fetchOne();
         assertThat(fromDb.getData()).isEqualTo("foo".getBytes());
     }
 

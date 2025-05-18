@@ -3,8 +3,7 @@ package com.example.fleamarket.api.review.repository;
 import com.example.fleamarket.api.review.entity.Review;
 import com.example.fleamarket.api.review.entity.Review_;
 import lombok.RequiredArgsConstructor;
-import org.seasar.doma.jdbc.criteria.Entityql;
-import org.seasar.doma.jdbc.criteria.NativeSql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,17 +11,16 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ReviewRepository {
-    private final Entityql entityql;
-    private final NativeSql nativeSql;
+    private final QueryDsl queryDsl;
 
     private static final Review_ r = new Review_();
 
     public void save(Review review) {
-        this.entityql.insert(r, review).execute();
+        this.queryDsl.insert(r).single(review).execute();
     }
 
     public List<Review> getByUserId(String userId) {
-        return this.entityql.from(r).where(cond -> cond.eq(r.revieweeUserId, userId)).fetch();
+        return this.queryDsl.from(r).where(cond -> cond.eq(r.revieweeUserId, userId)).fetch();
     }
 
 }

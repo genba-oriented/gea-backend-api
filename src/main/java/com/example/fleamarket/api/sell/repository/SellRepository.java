@@ -4,10 +4,9 @@ import com.example.fleamarket.api.sell.entity.ProductImage_;
 import com.example.fleamarket.api.sell.entity.Sell;
 import com.example.fleamarket.api.sell.entity.Sell_;
 import lombok.RequiredArgsConstructor;
-import org.seasar.doma.jdbc.criteria.Entityql;
-import org.seasar.doma.jdbc.criteria.NativeSql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.seasar.doma.jdbc.criteria.declaration.WhereDeclaration;
-import org.seasar.doma.jdbc.criteria.statement.EntityqlSelectStarting;
+import org.seasar.doma.jdbc.criteria.statement.EntityQueryable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -22,13 +21,12 @@ import static org.seasar.doma.jdbc.criteria.expression.Expressions.count;
 @Repository
 @RequiredArgsConstructor
 public class SellRepository {
-    private final Entityql entityql;
-    private final NativeSql nativeSql;
+    private final QueryDsl queryDsl;
     private static final Sell_ s = new Sell_();
     private static final ProductImage_ pi = new ProductImage_();
 
     public void save(Sell sell) {
-        this.entityql.insert(s, sell).execute();
+        this.queryDsl.insert(s).single(sell).execute();
     }
 
     public List<Sell> getByUserId(String userId) {
@@ -39,7 +37,7 @@ public class SellRepository {
 
 
     public void update(Sell sell) {
-        this.entityql.update(s, sell).execute();
+        this.queryDsl.update(s).single(sell).execute();
     }
 
     public Page<Sell> getByKeywordAndExceptStatus(String keyword, List<Sell.Status> statuses, Pageable pageable) {
@@ -51,7 +49,7 @@ public class SellRepository {
                 cond.notIn(s.status, statuses);
             }
         };
-        Long total = this.nativeSql.from(s).where(where).select(count()).fetchOne();
+        Long total = this.queryDsl.from(s).where(where).select(count()).fetchOne();
 
         List<Sell> sells = join()
             .where(where)
@@ -66,8 +64,8 @@ public class SellRepository {
 
     }
 
-    EntityqlSelectStarting<Sell> join() {
-        return this.entityql.from(s).leftJoin(pi, on -> on.eq(s.id, pi.sellId))
+    EntityQueryable<Sell> join() {
+        return this.queryDsl.from(s).leftJoin(pi, on -> on.eq(s.id, pi.sellId))
             .associate(s, pi, (sell, productImage) -> {
                 if (sell.getProductImages() == null) {
                     sell.setProductImages(new ArrayList<>());

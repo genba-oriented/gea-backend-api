@@ -5,7 +5,7 @@ import com.example.fleamarket.api.sell.entity.ProductImageData;
 import com.example.fleamarket.api.sell.entity.ProductImageData_;
 import org.junit.jupiter.api.Test;
 import org.seasar.doma.boot.autoconfigure.DomaAutoConfiguration;
-import org.seasar.doma.jdbc.criteria.Entityql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -23,9 +23,8 @@ class ProductImageDataRepositoryTest extends AbstractPostgresContainerTest {
     @Autowired
     ProductImageDataRepository productImageDataRepository;
 
-
     @Autowired
-    Entityql entityql;
+    QueryDsl queryDsl;
     static final ProductImageData_ pid = new ProductImageData_();
 
     @Test
@@ -36,7 +35,7 @@ class ProductImageDataRepositoryTest extends AbstractPostgresContainerTest {
         data.setData("foo".getBytes());
         this.productImageDataRepository.save(data);
 
-        ProductImageData fromDb = this.entityql.from(pid).where(cond -> cond.eq(pid.id, "pid99")).fetchOne();
+        ProductImageData fromDb = this.queryDsl.from(pid).where(cond -> cond.eq(pid.id, "pid99")).fetchOne();
         assertThat(fromDb.getData()).isEqualTo("foo".getBytes());
     }
 

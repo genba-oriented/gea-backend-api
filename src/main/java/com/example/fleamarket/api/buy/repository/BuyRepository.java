@@ -5,8 +5,8 @@ import com.example.fleamarket.api.buy.entity.Buy_;
 import com.example.fleamarket.api.sell.entity.ProductImage_;
 import com.example.fleamarket.api.sell.entity.Sell_;
 import lombok.RequiredArgsConstructor;
-import org.seasar.doma.jdbc.criteria.Entityql;
-import org.seasar.doma.jdbc.criteria.statement.EntityqlSelectStarting;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
+import org.seasar.doma.jdbc.criteria.statement.EntityQueryable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class BuyRepository {
-    private final Entityql entityql;
+    private final QueryDsl queryDsl;
     private static final Buy_ b = new Buy_();
     private static final Sell_ s = new Sell_();
     private static final ProductImage_ pi = new ProductImage_();
 
     public void save(Buy buy) {
-        this.entityql.insert(b, buy).execute();
+        this.queryDsl.insert(b).single(buy).execute();
     }
 
 
@@ -32,8 +32,8 @@ public class BuyRepository {
             .fetch();
     }
 
-    private EntityqlSelectStarting<Buy> join() {
-        return this.entityql.from(b)
+    private EntityQueryable<Buy> join() {
+        return this.queryDsl.from(b)
             .leftJoin(s, on -> on.eq(b.sellId, s.id))
             .associate(b, s, ((buy, sell) -> {
                 buy.setSell(sell);

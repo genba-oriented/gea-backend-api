@@ -5,7 +5,7 @@ import com.example.fleamarket.api.sell.entity.Sell;
 import com.example.fleamarket.api.sell.entity.Sell_;
 import org.junit.jupiter.api.Test;
 import org.seasar.doma.boot.autoconfigure.DomaAutoConfiguration;
-import org.seasar.doma.jdbc.criteria.Entityql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -28,7 +28,7 @@ class SellRepositoryTest extends AbstractPostgresContainerTest {
     @Autowired
     SellRepository sellRepository;
     @Autowired
-    Entityql entityql;
+    QueryDsl queryDsl;
     Sell_ s = new Sell_();
 
 
@@ -41,7 +41,7 @@ class SellRepositoryTest extends AbstractPostgresContainerTest {
         sell.setSellDateTime(LocalDateTime.of(2025, 2, 2, 10, 10, 10));
         this.sellRepository.save(sell);
 
-        Sell fromDb = this.entityql.from(s).where(cond -> cond.eq(s.id, "s99")).fetchOne();
+        Sell fromDb = this.queryDsl.from(s).where(cond -> cond.eq(s.id, "s99")).fetchOne();
         assertThat(fromDb.getProductName()).isEqualTo("pname99");
     }
 
