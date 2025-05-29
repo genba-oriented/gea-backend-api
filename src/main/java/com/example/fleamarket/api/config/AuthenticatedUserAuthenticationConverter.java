@@ -28,7 +28,7 @@ public class AuthenticatedUserAuthenticationConverter implements Converter<Jwt, 
         if (user == null) {
             // 新規ユーザとみなしレコードを登録する
             try {
-                this.userService.registerNotActivated(idpUserId, jwt.getClaim("email"));
+                user = this.userService.registerNotActivated(idpUserId, jwt.getClaim("email"));
             } catch (DataIntegrityViolationException ex) {
                 log.warn("登録に失敗。同時に処理が走ったと思われる " + ex.getMessage());
                 user = this.userService.getByIdpUserId(idpUserId);

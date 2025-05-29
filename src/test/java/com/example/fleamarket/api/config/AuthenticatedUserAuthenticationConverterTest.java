@@ -40,7 +40,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
     void convert_noUser() {
         Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").build();
         AuthenticatedUserAuthentication token = this.converter.convert(jwt);
-        assertThat(token.getPrincipal()).isNull();
+        assertThat(token.getPrincipal()).isNotNull();
 
         User fromDb = this.queryDsl.from(u).where(cond -> cond.eq(u.idpUserId, "idp99")).fetchOne();
         assertThat(fromDb.getIdpUserId()).isEqualTo("idp99");
