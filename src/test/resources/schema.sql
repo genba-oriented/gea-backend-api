@@ -12,7 +12,8 @@ create table "user" (
     idp_user_id varchar(100),
     balance integer,
     shipping_address varchar(100),
-    activated boolean
+    activated boolean,
+    unique(idp_user_id)
 );
 
 create table sell (

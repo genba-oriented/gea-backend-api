@@ -6,11 +6,21 @@ import com.example.fleamarket.api.user.entity.User;
 import com.example.fleamarket.api.user.entity.User_;
 import org.junit.jupiter.api.Test;
 import org.seasar.doma.jdbc.criteria.QueryDsl;
+import org.seasar.doma.jdbc.criteria.expression.Expressions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,5 +55,25 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
         User fromDb = this.queryDsl.from(u).where(cond -> cond.eq(u.idpUserId, "idp99")).fetchOne();
         assertThat(fromDb.getIdpUserId()).isEqualTo("idp99");
 
+    }
+
+
+    @Test
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Sql(value = "/clear.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    void convert_concurrentRegister() throws Exception {
+        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").build();
+        Callable<AuthenticatedUserAuthentication> callable = () -> {
+            AuthenticatedUserAuthentication authentication = this.converter.convert(jwt);
+            try {Thread.sleep(100);}catch(Exception ex){}
+            return authentication;
+        };
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        List<Future<AuthenticatedUserAuthentication>> futures = executor.invokeAll(List.of(callable, callable));
+        for (Future<AuthenticatedUserAuthentication> future: futures) {
+            assertThat(future.get().getPrincipal()).isNotNull();
+        }
+        long count = this.queryDsl.from(u).where(cond -> cond.eq(u.idpUserId, "idp99")).select(Expressions.count()).fetchOne();
+        assertThat(count).isEqualTo(1L);
     }
 }

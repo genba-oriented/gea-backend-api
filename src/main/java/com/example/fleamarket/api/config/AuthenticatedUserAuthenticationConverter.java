@@ -19,7 +19,6 @@ public class AuthenticatedUserAuthenticationConverter implements Converter<Jwt, 
     private final UserService userService;
 
 	@Override
-	@Transactional
 	public AuthenticatedUserAuthentication convert(Jwt jwt) {
 
 		String idpUserId = jwt.getClaim("sub");
