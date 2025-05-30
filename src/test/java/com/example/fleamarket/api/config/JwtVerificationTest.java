@@ -7,6 +7,7 @@ import com.example.fleamarket.api.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,6 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(UserController.class)
 @EnableSecurityTest
+// 環境変数の「SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_AUDIENCES」「SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI」を無効にするための設定
+// mvnでテストするときに、JwtDecoderが上記を取り込んでしまうのを防ぐ
+@TestPropertySource(properties = {
+    "spring.security.oauth2.resourceserver.jwt.issuer-uri=",
+    "spring.security.oauth2.resourceserver.jwt.audiences=aud01"
+})
 public class JwtVerificationTest {
     @Autowired
     MockMvc mockMvc;
