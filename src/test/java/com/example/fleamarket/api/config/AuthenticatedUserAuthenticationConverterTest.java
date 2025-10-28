@@ -1,7 +1,6 @@
 package com.example.fleamarket.api.config;
 
 import com.example.fleamarket.api.AbstractPostgresContainerTest;
-import com.example.fleamarket.api.EnableSecurityTest;
 import com.example.fleamarket.api.user.entity.User;
 import com.example.fleamarket.api.user.entity.User_;
 import org.junit.jupiter.api.Test;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +22,6 @@ import java.util.concurrent.Future;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@EnableSecurityTest
 @Sql("data.sql")
 @Transactional
 class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresContainerTest {
@@ -40,7 +36,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
 
     @Test
     void convert() {
-        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp01").build();
+        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp01").claim("email", "foo").build();
         AuthenticatedUserAuthentication token = this.converter.convert(jwt);
         assertThat(token.getPrincipal().getIdpUserId()).isEqualTo("idp01");
     }
@@ -48,7 +44,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
 
     @Test
     void convert_noUser() {
-        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").build();
+        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").claim("email", "foo").build();
         AuthenticatedUserAuthentication token = this.converter.convert(jwt);
         assertThat(token.getPrincipal()).isNotNull();
 
@@ -62,7 +58,7 @@ class AuthenticatedUserAuthenticationConverterTest extends AbstractPostgresConta
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Sql(value = "/clear.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void convert_concurrentRegister() throws Exception {
-        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").build();
+        Jwt jwt = Jwt.withTokenValue("dummy").header("dummy", "dummy").subject("idp99").claim("email", "foo").build();
         Callable<AuthenticatedUserAuthentication> callable = () -> {
             AuthenticatedUserAuthentication authentication = this.converter.convert(jwt);
             try {Thread.sleep(100);}catch(Exception ex){}

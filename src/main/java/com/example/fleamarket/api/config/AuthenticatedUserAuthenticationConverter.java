@@ -7,7 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 // @ComponentでBean定義すると、Controllerのスライステスト(@WebMvcTest)時に、
 // Converterを実装していることで取り込まれてしまってUserServiceのBean定義も必要になってしまうため、
@@ -17,17 +22,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthenticatedUserAuthenticationConverter implements Converter<Jwt, AuthenticatedUserAuthentication> {
 
     private final UserService userService;
+    private final OidcUserInfoService oidcUserInfoService;
 
 	@Override
 	public AuthenticatedUserAuthentication convert(Jwt jwt) {
 
-		String idpUserId = jwt.getClaim("sub");
+        String idpUserId = jwt.getClaim("sub");
 
 		User user = this.userService.getByIdpUserId(idpUserId);
         if (user == null) {
             // 新規ユーザとみなしレコードを登録する
+            String email = jwt.getClaim("email");
+            if (email == null) {
+                email = (String)this.oidcUserInfoService.getUserInfo(jwt).get("email");
+            }
             try {
-                user = this.userService.registerNotActivated(idpUserId, jwt.getClaim("email"));
+                user = this.userService.registerNotActivated(idpUserId, email);
             } catch (DataIntegrityViolationException ex) {
                 log.warn("登録に失敗。同時に処理が走ったと思われる " + ex.getMessage());
                 user = this.userService.getByIdpUserId(idpUserId);
@@ -35,5 +45,6 @@ public class AuthenticatedUserAuthenticationConverter implements Converter<Jwt, 
         }
         return new AuthenticatedUserAuthentication(user);
 	}
+
 
 }

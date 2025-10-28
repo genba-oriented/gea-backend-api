@@ -1,5 +1,6 @@
 package com.example.fleamarket.api.buy.controller;
 
+import com.example.fleamarket.api.DisableSecurityTest;
 import com.example.fleamarket.api.buy.entity.Buy;
 import com.example.fleamarket.api.buy.exception.AlreadyBoughtException;
 import com.example.fleamarket.api.buy.input.BuyInput;
@@ -32,6 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BuyController.class)
+@DisableSecurityTest
 @AutoConfigureRestDocs
 class BuyControllerRestDocsTest {
     @Autowired

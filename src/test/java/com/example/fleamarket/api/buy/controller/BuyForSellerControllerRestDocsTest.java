@@ -1,5 +1,6 @@
 package com.example.fleamarket.api.buy.controller;
 
+import com.example.fleamarket.api.DisableSecurityTest;
 import com.example.fleamarket.api.buy.dto.BuyerDto;
 import com.example.fleamarket.api.buy.service.BuyForSellerService;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BuyForSellerController.class)
+@DisableSecurityTest
 @AutoConfigureRestDocs
 class BuyForSellerControllerRestDocsTest {
     @Autowired

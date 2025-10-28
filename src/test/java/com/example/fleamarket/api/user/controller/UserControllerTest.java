@@ -1,6 +1,7 @@
 package com.example.fleamarket.api.user.controller;
 
-import com.example.fleamarket.api.EnableSecurityTest;
+import com.example.fleamarket.api.EnableSecurityTestWithMock;
+import com.example.fleamarket.api.config.OidcUserInfoService;
 import com.example.fleamarket.api.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,11 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-@EnableSecurityTest
+@EnableSecurityTestWithMock
 class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @MockitoBean
-    UserService userService;
 
     @Autowired
     ObjectMapper objectMapper;

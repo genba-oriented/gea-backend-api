@@ -1,5 +1,6 @@
 package com.example.fleamarket.api.review.controller;
 
+import com.example.fleamarket.api.DisableSecurityTest;
 import com.example.fleamarket.api.review.dto.RatedUserDto;
 import com.example.fleamarket.api.review.entity.Review;
 import com.example.fleamarket.api.review.exception.AlreadyReviewedException;
@@ -28,6 +29,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.pathPara
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ReviewController.class)
+@DisableSecurityTest
 @AutoConfigureRestDocs
 class ReviewControllerRestDocsTest {
     @Autowired

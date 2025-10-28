@@ -1,5 +1,6 @@
 package com.example.fleamarket.api.sell.controller;
 
+import com.example.fleamarket.api.DisableSecurityTest;
 import com.example.fleamarket.api.sell.entity.ProductImage;
 import com.example.fleamarket.api.sell.entity.ProductImageData;
 import com.example.fleamarket.api.sell.entity.Sell;
@@ -31,6 +32,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(SellController.class)
+@DisableSecurityTest
 @AutoConfigureRestDocs
 class SellControllerRestDocsTest {
     @Autowired

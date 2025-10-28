@@ -8,6 +8,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          audiences: override-me
+          issuer-uri: override-me
 
 

@@ -1,8 +1,7 @@
 package com.example.fleamarket.api.buy.controller;
 
-import com.example.fleamarket.api.EnableSecurityTest;
+import com.example.fleamarket.api.EnableSecurityTestWithMock;
 import com.example.fleamarket.api.buy.service.BuyService;
-import com.example.fleamarket.api.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BuyController.class)
-@EnableSecurityTest
+@EnableSecurityTestWithMock
 class BuyControllerSecurityTest {
 
     @Autowired
@@ -21,9 +20,6 @@ class BuyControllerSecurityTest {
 
     @MockitoBean
     BuyService buyService;
-
-    @MockitoBean
-    UserService userService;
 
     @Test
     void notAuthorized() throws Exception {

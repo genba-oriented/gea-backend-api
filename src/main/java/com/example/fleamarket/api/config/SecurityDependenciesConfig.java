@@ -12,8 +12,8 @@ public class SecurityDependenciesConfig {
 	// @BeanメソッドでBean定義する
 	@Bean
 	public AuthenticatedUserAuthenticationConverter authenticatedUserAuthenticationConverter(
-        UserService userService) {
-		return new AuthenticatedUserAuthenticationConverter(userService);
+        UserService userService, OidcUserInfoService oidcUserInfoService) {
+		return new AuthenticatedUserAuthenticationConverter(userService, oidcUserInfoService);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.example.fleamarket.api.shipping.controller;
 
+import com.example.fleamarket.api.DisableSecurityTest;
 import com.example.fleamarket.api.shipping.exception.AlreadyShippedException;
 import com.example.fleamarket.api.shipping.service.ShippingService;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ShippingController.class)
+@DisableSecurityTest
 @AutoConfigureRestDocs
 class ShippingControllerRestDocsTest {
     @Autowired

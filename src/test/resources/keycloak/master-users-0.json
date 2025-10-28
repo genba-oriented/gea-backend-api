@@ -1,0 +1,47 @@
+{
+  "realm" : "master",
+  "users" : [ {
+    "id" : "fe72af1a-4114-462c-bd4b-7ae607bfa52a",
+    "username" : "admin",
+    "emailVerified" : false,
+    "attributes" : {
+      "is_temporary_admin" : [ "true" ]
+    },
+    "enabled" : true,
+    "createdTimestamp" : 1761219659695,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "1d7661a1-6961-459b-9c02-4c4f5b2067e5",
+      "type" : "password",
+      "createdDate" : 1761219659794,
+      "secretData" : "{\"value\":\"4NNHxR7gQbnPe3W8XimiWoZ1phPSmeGIp87ABWrhoPw=\",\"salt\":\"eKfYVA9TVac4we2bfXR+MQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-master", "admin" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "df90c5f8-e676-41f6-b91a-e9fa4763a422",
+    "username" : "taro",
+    "email" : "taro@example.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1761219715529,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "1fa7a1b5-b2e5-4baf-8937-79e4f83d28d2",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1761219727566,
+      "secretData" : "{\"value\":\"d/1+GRZ2xfC/jdSqEmJalTO2Zgw/s+5YNXz9WqLvJSs=\",\"salt\":\"lAimmkB++zJv0GZC878IaA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-master" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
